@@ -6,9 +6,16 @@ const CreateMovieComponent = () => {
     const [data, setData] = useState({
         movieName : "",
         movieYear : "",
-        movieGenre : "",
+        // movieGenre : "",
         imdbRating : ""
     })
+
+    const [movieGenre, setGenre] = useState("");
+    const genreHandler = (event) => {
+        setGenre(()=>event.target.value);
+        // console.log(filter);
+        console.log(movieGenre);
+    };
 
     const clickHandler = (e) =>{
         setData((prev)=>(
@@ -34,7 +41,7 @@ const CreateMovieComponent = () => {
             body : JSON.stringify({
                 movieName : data.movieName,
                 movieYear :  data.movieYear,
-                movieGenre : data.movieGenre,
+                movieGenre : movieGenre,
                 imdbRating :  data.imdbRating
             })
         })
@@ -86,7 +93,7 @@ const CreateMovieComponent = () => {
 
           <div className='mb-3'>
               <label>Genre</label>
-              <input
+              {/* <input
                 type='text'
                 className='form-control'
                 placeholder='Enter the genre of the movie'
@@ -94,7 +101,12 @@ const CreateMovieComponent = () => {
                 onChange={clickHandler}
                 name = 'movieGenre'
                 required
-              />
+              /> */}
+              <select value={movieGenre} className='form-control' onChange={genreHandler}>
+                <option name="action" value="Action">Action</option>
+                <option name="thriller" value="Thriller">Thriller</option>
+                <option name="scifi" value="SciFi">SciFi</option>
+              </select>
           </div>
 
           <div className='mb-3'>

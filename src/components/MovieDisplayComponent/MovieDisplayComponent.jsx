@@ -31,7 +31,9 @@ const MovieDisplayComponent = () =>
         })
         .then(response => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
+          setMovies(data);
+
         })
     }
 
@@ -55,7 +57,7 @@ const MovieDisplayComponent = () =>
   useEffect(()=>{
     //   console.log(filter);
     fetchMovies();
-  },[movies]);
+  },[]);
 
   return (
 
@@ -63,10 +65,11 @@ const MovieDisplayComponent = () =>
 
           <div className='mb-3'>
               <label className='mx-3'>Select Genre </label>
-              <select value={filter} onChange={filterHandler}>
-                <option name="action" value="action">Action</option>
-                <option name="thriller" value="thriller">Thriller</option>
-                <option name="sports" value="sports">Sports</option>
+              <select value={filter} className='form-control' onChange={filterHandler}>
+                <option name="all" value="All">All</option>
+                <option name="action" value="Action">Action</option>
+                <option name="thriller" value="Thriller">Thriller</option>
+                <option name="scifi" value="SciFi">SciFi</option>
               </select>
           </div>
 
